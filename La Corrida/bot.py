@@ -3,6 +3,7 @@
 
 from botbuilder.core import ActivityHandler, MessageFactory, TurnContext
 from botbuilder.schema import ChannelAccount, CardAction, ActionTypes, SuggestedActions
+import scrape as houseData
 
 
 class MyBot(ActivityHandler):
@@ -11,7 +12,9 @@ class MyBot(ActivityHandler):
 	Suggested actions enable your bot to present buttons that the user
 	can tap to provide input.
 	"""
+	houseData.getHousing()
 
+	
 	async def on_members_added_activity(
 		self, members_added: [ChannelAccount], turn_context: TurnContext
 	):
@@ -46,10 +49,11 @@ class MyBot(ActivityHandler):
 
 	def _process_input(self, text: str):
 
-		if text == "Housing":
-			return f"do Housing"
+		if text == "housing":
+			return houseData.post_links[0]
+			print(houseData.eb_apts)
 
-		if text == "Resources":
+		if text == "resources":
 			return f"do Resources"
 
 		return "Please select a valid option from the provided choices"
