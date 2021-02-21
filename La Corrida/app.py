@@ -85,6 +85,7 @@ async def messages(req: Request) -> Response:
 
     response = await ADAPTER.process_activity(activity, auth_header, BOT.on_turn)
     if response:
+        print(response)
         return json_response(data=response.body, status=response.status)
     return Response(status=201)
 
