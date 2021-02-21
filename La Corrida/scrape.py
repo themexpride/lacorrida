@@ -12,16 +12,6 @@ post_areas = []		# House area
 post_titles = []	# House title
 post_prices = []	# House price
 
-eb_apts = pd.DataFrame(
-	{	'posted': post_time,
-		'neighborhood': post_areas,
-		'post title': post_titles,
-		'number bedrooms': post_br,
-		'sqft': post_sqft,
-		'URL': post_links,
-		'price': post_prices
-	}
-)
 
 def getHousing():
 
@@ -106,6 +96,19 @@ def getHousing():
 
 				sqft = np.nan
 				post_sqft.append(sqft)
+
+	global eb_apts
+	
+	eb_apts = pd.DataFrame(
+		{	'posted': post_time,
+			'neighborhood': post_areas,
+			'post title': post_titles,
+			'number bedrooms': post_br,
+			'sqft': post_sqft,
+			'URL': post_links,
+			'price': post_prices
+		}
+	)
 
 	print(eb_apts.info())
 	eb_apts.head(10)

@@ -14,7 +14,7 @@ class MyBot(ActivityHandler):
 	"""
 	houseData.getHousing()
 
-	
+
 	async def on_members_added_activity(
 		self, members_added: [ChannelAccount], turn_context: TurnContext
 	):
@@ -30,7 +30,7 @@ class MyBot(ActivityHandler):
 		"""
 
 		text = turn_context.activity.text.lower()
-		response_text = self._process_input(text)
+		response_text = self._process_input(text,0)
 
 		await turn_context.send_activity(MessageFactory.text(response_text))
 
@@ -47,11 +47,16 @@ class MyBot(ActivityHandler):
 
 				await self._send_suggested_actions(turn_context)
 
-	def _process_input(self, text: str):
+	async def _process_input(self, text: str, num: int):
 
 		if text == "housing":
-			return houseData.post_links[0]
-			print(houseData.eb_apts)
+			numPosts = num + 3
+
+			while num <= numPosts:
+				await turn_context.send_activity(MessageFactory.text( "a" ))
+				num += 1
+
+		return
 
 		if text == "resources":
 			return f"do Resources"
