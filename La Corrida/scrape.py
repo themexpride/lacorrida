@@ -2,6 +2,8 @@
 from requests import get
 from bs4 import BeautifulSoup
 import numpy as np
+import pandas as pd
+
 
 response = get('https://losangeles.craigslist.org/search/apa?hasPic=1&availabilityMode=0') 
 html_soup = BeautifulSoup(response.text, 'html.parser')
@@ -95,6 +97,25 @@ for post in posts:
                 
             #    sqft = np.nan
             #    sqfts.append(sqft)
+
+eb_apts = pd.DataFrame(
+	{	'posted': post_time,
+		'neighborhood': post_areas,
+		'post title': post_titles,
+		'number bedrooms': post_br,
+		'sqft': post_sqft,
+		'URL': post_links,
+		'price': post_prices
+	}
+)
+
+print(eb_apts.info())
+eb_apts.head(10)
+eb_apts = eb_apts.drop_duplicates(subset='URL')
+
+eb_apts.style
+print(eb_apts)
+
 
 # print(type(posts)) #to double check that I got a ResultSet
 # print(len(posts)) #to double check I got 120 (elements/page)
