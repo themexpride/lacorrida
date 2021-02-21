@@ -5,10 +5,8 @@ import sys
 import traceback
 from datetime import datetime
 
-from telegram.ext import Updater, InlineKeyboardMarkup, CallbackQueryHandler, InlineKeyboardButton
+from telegram.ext import Updater, CallbackQueryHandler
 updater = Updater(token='1674393891:AAFfA3VDfvwsbQWZdguckZVkXjg1TBfqGPs', use_context=True)
-markup = types.InlineKeyboardMarkup()
-
 
 
 from aiohttp import web
