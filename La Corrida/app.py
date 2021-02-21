@@ -5,8 +5,11 @@ import sys
 import traceback
 from datetime import datetime
 
-from telegram.ext import Updater
+from telegram.ext import Updater, InlineKeyboardMarkup, CallbackQueryHandler, InlineKeyboardButton
 updater = Updater(token='1674393891:AAFfA3VDfvwsbQWZdguckZVkXjg1TBfqGPs', use_context=True)
+markup = types.InlineKeyboardMarkup()
+
+
 
 from aiohttp import web
 from aiohttp.web import Request, Response, json_response
@@ -61,6 +64,14 @@ ADAPTER.on_turn_error = on_error
 
 # Create the Bot
 BOT = MyBot()
+
+stringList = {"Name": "John", "Language": "Python", "API": "pyTelegramBotAPI"}
+
+for key, value in stringList.items():
+    markup.add(types.InlineKeyboardButton(text=value,
+                                          callback_data="['value', '" + value + "', '" + key + "']"),
+               types.InlineKeyboardButton(text=crossIcon,
+                                          callback_data="['key', '" + key + "']"))
 
 
 # Listen for incoming requests on /api/messages
