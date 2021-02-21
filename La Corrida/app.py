@@ -6,6 +6,7 @@ import traceback
 from datetime import datetime
 
 from telegram.ext import Updater
+updater = Updater(token='1674393891:AAFfA3VDfvwsbQWZdguckZVkXjg1TBfqGPs', use_context=True)
 
 from aiohttp import web
 from aiohttp.web import Request, Response, json_response
